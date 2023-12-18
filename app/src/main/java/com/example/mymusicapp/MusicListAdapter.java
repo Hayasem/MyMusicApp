@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,11 +21,12 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         this.context = context;
     }
 
+    @NotNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_item, parent,
                 false);
-        return new MusicListAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         return songsList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView titleTextView;
         ImageView imageViewIcon;

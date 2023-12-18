@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             noMusicTextView.setVisibility(View.VISIBLE);
         }else{
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter();
+            recyclerView.setAdapter(new MusicListAdapter(songs, getApplicationContext()));
         }
     }
     boolean checkPermission(){
