@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +12,10 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 projection, selection, null, null);
+        while (cursor.moveToNext()){
+            AudioModel songData = new AudioModel(cursor.getString(1), cursor.getString(0),
+                    cursor.getString(2));
+
+            if(new File(songData.getPath()).exists())
+                songs.add(songData);
+        }
+        if (songs.size()==0){
+            noMusicTextView.setVisibility(View.VISIBLE);
+        }else{
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter();
+        }
     }
     boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(MainActivity.this,
