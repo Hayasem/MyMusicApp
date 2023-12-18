@@ -13,9 +13,12 @@ import androidx.core.content.ContextCompat;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     TextView noMusicTextView;
     RecyclerView recyclerView;
+    ArrayList<AudioModel> songs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
